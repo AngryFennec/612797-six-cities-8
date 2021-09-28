@@ -1,6 +1,6 @@
 # Личный проект «Шесть городов»
 
-* Студент: [Анастасия Ничипорчук](https://up.htmlacademy.ru/react/8/user/612797).
+* Студент: [Анастасия Ничипорчук](https://htmlacademy.ru/profile/id612797).
 * Наставник: [Артём Рудов](https://htmlacademy.ru/profile/id345377).
 
 ---
