@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
 
-const Settings = {
-  OFFERS_COUNT: 7,
-};
+enum Settings {
+  OFFERS_COUNT= 7,
+}
 
 ReactDOM.render(
   <React.StrictMode>

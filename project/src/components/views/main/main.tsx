@@ -1,10 +1,7 @@
-import OffersList from '../offers-list/offers-list';
+import OffersList from '../../containers/offers-list/offers-list';
+import {DefaultPropsType} from '../../../types/propsTypes';
 
-type MainScreenProps = {
-  offersCount: number;
-}
-
-function Main({offersCount}: MainScreenProps): JSX.Element {
+function Main({offersCount}: DefaultPropsType): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">

@@ -1,10 +1,7 @@
-import Main from '../main/main';
+import Main from '../views/main/main';
+import {DefaultPropsType} from '../../types/propsTypes';
 
-type AppScreenProps = {
-  offersCount: number;
-}
-
-function App({offersCount}: AppScreenProps): JSX.Element {
+function App({offersCount}: DefaultPropsType): JSX.Element {
   return <Main offersCount={offersCount} />;
 }
 
