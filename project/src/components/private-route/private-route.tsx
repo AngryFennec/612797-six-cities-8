@@ -7,13 +7,10 @@ type PrivateRouteProps = RouteProps & {
   authorizationStatus: AuthorizationStatus;
 }
 
-function PrivateRoute(props: PrivateRouteProps): JSX.Element {
-  const {exact, path, render, authorizationStatus} = props;
-
+function PrivateRoute({authorizationStatus, render, ...rest }: PrivateRouteProps): JSX.Element {
   return (
     <Route
-      exact={exact}
-      path={path}
+      {...rest}
       render={() => (
         authorizationStatus === AuthorizationStatus.Auth
           ? render()

@@ -1,13 +1,13 @@
 import React from 'react';
 import Offer from '../../offer/offer';
-import {getRandomString} from '../../../utils/common';
+import {nanoid} from 'nanoid';
 
 type OffersListProps = {
   offersCount: number;
 }
 
 function OffersList({offersCount}: OffersListProps): JSX.Element {
-  const offers = new Array(offersCount).fill(getRandomString());
+  const offers = new Array(offersCount).fill(nanoid());
 
   return (
     <>
