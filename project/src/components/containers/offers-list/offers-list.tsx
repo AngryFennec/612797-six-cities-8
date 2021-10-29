@@ -1,18 +1,19 @@
 import React from 'react';
 import Offer from '../../offer/offer';
-import {nanoid} from 'nanoid';
+import {DefaultPropsType} from '../../../types/propsTypes';
+import {useState} from 'react';
+function OffersList({offers}: DefaultPropsType): JSX.Element {
 
-type OffersListProps = {
-  offersCount: number;
-}
+  const [activeOfferId, setActiveOfferId] = useState('');
 
-function OffersList({offersCount}: OffersListProps): JSX.Element {
-  const offers = new Array(offersCount).fill(nanoid());
+  function setActiveOffer(id: string): void {
+    setActiveOfferId(id);
+  }
 
   return (
     <>
       {
-        offers.map((item, i) => <Offer key={`offer-${item}`} />)
+        offers.map((item, i) => <Offer offer={item} isActive={activeOfferId === item.id} setActiveOffer={setActiveOffer} isFavorites={false} key={`offer-${item.id}`} />)
       }
     </>
   );

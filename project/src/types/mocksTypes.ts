@@ -1,5 +1,3 @@
-import {nanoid} from 'nanoid';
-
 export type UserType = {
   avatarUrl: string;
   id: string;
