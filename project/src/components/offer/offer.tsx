@@ -1,6 +1,7 @@
 import {OfferType} from '../../types/mocksTypes';
 import {TOTAL_STARS} from '../../const';
 import {Link} from 'react-router-dom';
+import classNames from 'classnames';
 
 
 type OfferPropsType = {
@@ -11,21 +12,39 @@ type OfferPropsType = {
 }
 
 function Offer({offer, setActiveOffer, isActive, isFavorites}: OfferPropsType): JSX.Element {
+
+  function offerMouseEnterHandler() {
+    setActiveOffer(offer.id);
+  }
+
+  function offerMouseLeaveHandler() {
+    setActiveOffer('');
+  }
+
+  const offerCardClassnames = classNames({
+    'place-card': true,
+    'favorites__card': isFavorites,
+    'cities__place-card': !isFavorites,
+  });
+
+  const offerImageWrapperClassnames  = classNames({
+    'place-card__image-wrapper': true,
+    'favorites__image-wrapper': isFavorites,
+    'cities__image-wrapper': !isFavorites,
+  });
+
+
   return (
-    <article onMouseEnter={() => {
-      setActiveOffer(offer.id);
-    }}
-    onMouseLeave={() => {
-      setActiveOffer('');
-    }} className={`${isFavorites ? 'favorites__card' : 'cities__place-card'} place-card`}
+    <article onMouseEnter={offerMouseEnterHandler}
+      onMouseLeave={offerMouseLeaveHandler} className={offerCardClassnames}
     >
       <div className="place-card__mark">
         {offer.isPremium ? <span >Premium</span> : ''}
       </div>
-      <div className={`${isFavorites ? 'favorites__image-wrapper' : 'cities__image-wrapper'} place-card__image-wrapper`}>
+      <div className={offerImageWrapperClassnames}>
         <a href="#">
           <img className="place-card__image" src={offer.previewImage} width="260" height="200"
-            alt="Place image"
+            alt="Place"
           />
         </a>
       </div>

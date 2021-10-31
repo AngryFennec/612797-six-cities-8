@@ -1,16 +1,16 @@
 export type UserType = {
   avatarUrl: string;
   id: string;
-  isPro: boolean;
+  isProStatus: boolean;
   name: string;
 }
 
 export type ReviewType = {
-    comment: string;
-    date: string;
-    id: string;
-    rating: number;
-    user: UserType;
+  comment: string;
+  date: string;
+  id: string;
+  rating: number;
+  user: UserType;
 }
 
 export type LocationType = {
@@ -24,11 +24,11 @@ export type CityType = {
   name: string;
 }
 
-export enum HoustinTypeEnum {
-  APARTAMENT = 'apartment',
-  ROOM = 'room',
-  HOUSE = 'house',
-  HOTEL = 'hotel'
+export enum HouseType {
+  APARTAMENT,
+  ROOM,
+  HOUSE,
+  HOTEL
 }
 
 export type OfferType = {
@@ -47,5 +47,5 @@ export type OfferType = {
   price: number;
   rating: number;
   title: string;
-  type: HoustinTypeEnum,
+  type: HouseType,
 }

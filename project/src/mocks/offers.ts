@@ -1,5 +1,5 @@
 import {nanoid} from 'nanoid';
-import {HoustinTypeEnum, OfferType} from '../types/mocksTypes';
+import {HouseType, OfferType} from '../types/mocksTypes';
 
 const offers: OfferType[] = [
   {
@@ -17,7 +17,7 @@ const offers: OfferType[] = [
     host: {
       avatarUrl: 'img/avatar-max.jpg',
       id: nanoid(),
-      isPro: true,
+      isProStatus: true,
       name: 'Angelina',
     },
     id: nanoid(),
@@ -34,7 +34,7 @@ const offers: OfferType[] = [
     price: 120,
     rating: 4.8,
     title: 'Beautiful & luxurious studio at great location',
-    type: HoustinTypeEnum.APARTAMENT,
+    type: HouseType.APARTAMENT,
   },
   {
     bedrooms: 5,
@@ -51,7 +51,7 @@ const offers: OfferType[] = [
     host: {
       avatarUrl: 'img/avatar-max.jpg',
       id: nanoid(),
-      isPro: false,
+      isProStatus: false,
       name: 'Agnessa',
     },
     id: nanoid(),
@@ -68,7 +68,7 @@ const offers: OfferType[] = [
     price: 200,
     rating: 4.9,
     title: 'Beautiful & luxurious house at great location',
-    type: HoustinTypeEnum.HOUSE,
+    type: HouseType.HOUSE,
   },
   {
     bedrooms: 2,
@@ -85,7 +85,7 @@ const offers: OfferType[] = [
     host: {
       avatarUrl: 'img/avatar-max.jpg',
       id: nanoid(),
-      isPro: true,
+      isProStatus: true,
       name: 'Angelina',
     },
     id: nanoid(),
@@ -102,7 +102,7 @@ const offers: OfferType[] = [
     price: 100,
     rating: 4.5,
     title: 'Beautiful & luxurious studio at great location',
-    type: HoustinTypeEnum.ROOM,
+    type: HouseType.ROOM,
   },
   {
     bedrooms: 2,
@@ -119,7 +119,7 @@ const offers: OfferType[] = [
     host: {
       avatarUrl: 'img/avatar-max.jpg',
       id: nanoid(),
-      isPro: true,
+      isProStatus: true,
       name: 'Alla',
     },
     id: nanoid(),
@@ -136,7 +136,7 @@ const offers: OfferType[] = [
     price: 100,
     rating: 4.5,
     title: 'Beautiful & luxurious studio at great location',
-    type: HoustinTypeEnum.HOTEL,
+    type: HouseType.HOTEL,
   },
 ];
 

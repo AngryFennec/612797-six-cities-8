@@ -1,7 +1,7 @@
 import React, {ChangeEvent, FormEvent, useState} from 'react';
 import {TOTAL_STARS} from '../../const';
 
-function ReviewsForm() {
+function ReviewsForm(): JSX.Element {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
 
