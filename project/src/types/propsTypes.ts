@@ -1,3 +1,5 @@
+import {OfferType} from './mocksTypes';
+
 export type DefaultPropsType = {
-  offersCount: number;
+  offers: OfferType[];
 }

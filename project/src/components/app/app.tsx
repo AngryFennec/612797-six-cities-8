@@ -8,12 +8,12 @@ import Error404 from '../views/error404/error404';
 import PrivateRoute from '../private-route/private-route';
 import Room from '../views/room/room';
 
-function App({offersCount}: DefaultPropsType): JSX.Element {
+function App({offers}: DefaultPropsType): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={AppRoute.Root}>
-          <Main offersCount={offersCount} />
+          <Main offers={offers} />
         </Route>
         <Route exact path={AppRoute.SignIn}>
           <SignIn />
@@ -24,7 +24,7 @@ function App({offersCount}: DefaultPropsType): JSX.Element {
         <PrivateRoute
           exact
           path={AppRoute.Favorites}
-          render={() => <Favorites />}
+          render={() => <Favorites offers={offers} />}
           authorizationStatus={AuthorizationStatus.NoAuth}
         >
         </PrivateRoute>
