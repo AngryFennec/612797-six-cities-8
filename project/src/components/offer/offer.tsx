@@ -6,19 +6,21 @@ import classNames from 'classnames';
 
 type OfferPropsType = {
   offer: OfferType;
-  setActiveOffer: (id: string) => void;
-  isActive: boolean;
+  setActiveOffer?: (id: string | undefined) => void;
   isFavorites: boolean;
 }
 
-function Offer({offer, setActiveOffer, isActive, isFavorites}: OfferPropsType): JSX.Element {
-
+function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): JSX.Element {
   function offerMouseEnterHandler() {
-    setActiveOffer(offer.id);
+    if (setActiveOffer) {
+      setActiveOffer(offer.id);
+    }
   }
 
   function offerMouseLeaveHandler() {
-    setActiveOffer('');
+    if (setActiveOffer) {
+      setActiveOffer(undefined);
+    }
   }
 
   const offerCardClassnames = classNames({
@@ -33,14 +35,22 @@ function Offer({offer, setActiveOffer, isActive, isFavorites}: OfferPropsType): 
     'cities__image-wrapper': !isFavorites,
   });
 
+  function getPremiumMark(): JSX.Element | string {
+    return offer.isPremium
+      ?
+      <div className="place-card__mark">
+        <span >Premium</span>
+      </div>
+      :
+      '';
+  }
+
 
   return (
     <article onMouseEnter={offerMouseEnterHandler}
       onMouseLeave={offerMouseLeaveHandler} className={offerCardClassnames}
     >
-      <div className="place-card__mark">
-        {offer.isPremium ? <span >Premium</span> : ''}
-      </div>
+      {getPremiumMark()}
       <div className={offerImageWrapperClassnames}>
         <a href="#">
           <img className="place-card__image" src={offer.previewImage} width="260" height="200"

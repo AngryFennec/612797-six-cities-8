@@ -1,7 +1,12 @@
 import OffersList from '../../containers/offers-list/offers-list';
+import Map from '../../map/Map';
 import {DefaultPropsType} from '../../../types/propsTypes';
+import {useState} from 'react';
 
 function Main({offers}: DefaultPropsType): JSX.Element {
+  const [activeId, setActiveId] = useState<string | undefined>(
+    undefined,
+  );
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -91,11 +96,17 @@ function Main({offers}: DefaultPropsType): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={offers} />
+                <OffersList offers={offers} setActiveOffer={setActiveId} />
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <section className="cities__map map">
+                <Map
+                  city={offers[0].city}
+                  offers={offers}
+                  activeId={activeId}
+                />
+              </section>
             </div>
           </div>
         </div>
