@@ -1,5 +1,5 @@
 import OffersList from '../../containers/offers-list/offers-list';
-import Map from '../../map/Map';
+import Map from '../../map/map';
 import {DefaultPropsType} from '../../../types/propsTypes';
 import {useState} from 'react';
 
