@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 type OfferPropsType = {
   offer: OfferType;
-  setActiveOffer?: (id: string | undefined) => void;
+  setActiveOffer?: (id?: string) => void;
   isFavorites: boolean;
 }
 
@@ -19,7 +19,7 @@ function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): JSX.Elemen
 
   function offerMouseLeaveHandler() {
     if (setActiveOffer) {
-      setActiveOffer(undefined);
+      setActiveOffer();
     }
   }
 
@@ -35,14 +35,12 @@ function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): JSX.Elemen
     'cities__image-wrapper': !isFavorites,
   });
 
-  function getPremiumMark(): JSX.Element | string {
-    return offer.isPremium
-      ?
+  function getPremiumMark(): false | JSX.Element {
+    return offer.isPremium && (
       <div className="place-card__mark">
         <span >Premium</span>
       </div>
-      :
-      '';
+    );
   }
 
 
@@ -52,11 +50,15 @@ function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): JSX.Elemen
     >
       {getPremiumMark()}
       <div className={offerImageWrapperClassnames}>
-        <a href="#">
-          <img className="place-card__image" src={offer.previewImage} width="260" height="200"
+        <Link to="#">
+          <img
+            className="place-card__image"
+            src={offer.previewImage}
+            width="260"
+            height="200"
             alt="Place"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">

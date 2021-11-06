@@ -2,13 +2,13 @@ import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from '../../hooks/useMap';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const';
+import {ICON_ANCHOR_HEIGHT, ICON_ANCHOR_WIDTH, ICON_SIZE, URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const';
 import {CityType, OfferType} from '../../types/mocksTypes';
 
 type MapType = {
   city: CityType,
   offers: OfferType[],
-  activeId: string | undefined
+  activeId?: string
 };
 
 function Map({city, offers, activeId}: MapType): JSX.Element {
@@ -17,14 +17,14 @@ function Map({city, offers, activeId}: MapType): JSX.Element {
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
+    iconSize: [ICON_SIZE, ICON_SIZE],
+    iconAnchor: [ICON_ANCHOR_WIDTH, ICON_ANCHOR_HEIGHT],
   });
 
   const currentCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_CURRENT,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
+    iconSize: [ICON_SIZE, ICON_SIZE],
+    iconAnchor: [ICON_ANCHOR_WIDTH, ICON_ANCHOR_HEIGHT],
   });
 
   useEffect(() => {
@@ -42,14 +42,13 @@ function Map({city, offers, activeId}: MapType): JSX.Element {
           .addTo(map);
       });
     }
-  }, [map, offers, activeId]);
+  }, [map, offers, activeId, defaultCustomIcon, currentCustomIcon]);
 
   return (
     <div
       style={{height: '100%'}}
       ref={mapRef}
-    >
-    </div>
+    />
   );
 }
 

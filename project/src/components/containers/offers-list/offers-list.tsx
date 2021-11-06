@@ -4,13 +4,15 @@ import {OfferType} from '../../../types/mocksTypes';
 
 type OffersListType = {
   offers: OfferType[];
-  setActiveOffer?: (id: string | undefined) => void;
+  setActiveOffer?: (id?: string) => void;
+
 }
+
 function OffersList({offers, setActiveOffer}: OffersListType): JSX.Element {
   return (
     <>
       {
-        offers.map((item, i) => (
+        offers.map((item) => (
           <Offer
             offer={item}
             setActiveOffer={setActiveOffer}
