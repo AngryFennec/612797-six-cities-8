@@ -1,4 +1,4 @@
-import RenderOffersList from '../../../helpers/renderOffersList';
+import renderOffersList from '../../../helpers/renderOffersList';
 import Map from '../../map/map';
 import {DefaultPropsType} from '../../../types/propsTypes';
 import {useState} from 'react';
@@ -96,7 +96,7 @@ function Main({offers}: DefaultPropsType): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {RenderOffersList({offers: offers, setActiveOffer: setActiveId})}
+                {renderOffersList({offers: offers, setActiveOffer: setActiveId})}
               </div>
             </section>
             <div className="cities__right-section">

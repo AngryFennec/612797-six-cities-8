@@ -1,5 +1,5 @@
 import {DefaultPropsType} from '../../../types/propsTypes';
-import RenderOffersList from '../../../helpers/renderOffersList';
+import renderOffersList from '../../../helpers/renderOffersList';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../../const';
 
@@ -48,7 +48,7 @@ function Favorites({offers}: DefaultPropsType): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {RenderOffersList({offers: offers})}
+                  {renderOffersList({offers: offers})}
                 </div>
               </li>
             </ul>
