@@ -1,4 +1,4 @@
-import React from 'react';
+import {ReactNodeArray} from 'react';
 import Offer from '../../offer/offer';
 import {OfferType} from '../../../types/mocksTypes';
 
@@ -8,21 +8,14 @@ type OffersListType = {
 
 }
 
-function OffersList({offers, setActiveOffer}: OffersListType): JSX.Element {
+function OffersList({offers, setActiveOffer}: OffersListType): ReactNodeArray {
   return (
-    <>
-      {
-        offers.map((item) => (
-          <Offer
-            offer={item}
-            setActiveOffer={setActiveOffer}
-            isFavorites={false}
-            key={`offer-${item.id}`}
-          />
-        ),
-        )
-      }
-    </>
+    offers.map((item) => (
+      Offer(
+        {offer: item, setActiveOffer: setActiveOffer, isFavorites: false},
+      )
+    ),
+    )
   );
 }
 

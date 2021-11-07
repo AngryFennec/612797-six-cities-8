@@ -48,7 +48,7 @@ function Favorites({offers}: DefaultPropsType): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  <OffersList offers={offers} />
+                  {OffersList({offers: offers})}
                 </div>
               </li>
             </ul>

@@ -96,7 +96,7 @@ function Main({offers}: DefaultPropsType): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={offers} setActiveOffer={setActiveId} />
+                {OffersList({offers: offers, setActiveOffer: setActiveId})}
               </div>
             </section>
             <div className="cities__right-section">

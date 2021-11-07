@@ -2,6 +2,7 @@ import {OfferType} from '../../types/mocksTypes';
 import {TOTAL_STARS} from '../../const';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
+import {ReactNode} from 'react';
 
 
 type OfferPropsType = {
@@ -10,7 +11,7 @@ type OfferPropsType = {
   isFavorites: boolean;
 }
 
-function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): JSX.Element {
+function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): ReactNode {
   function offerMouseEnterHandler() {
     if (setActiveOffer) {
       setActiveOffer(offer.id);
