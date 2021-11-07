@@ -1,6 +1,6 @@
 import {ReactNodeArray} from 'react';
-import Offer from '../../offer/offer';
-import {OfferType} from '../../../types/mocksTypes';
+import Offer from '../components/offer/offer';
+import {OfferType} from '../types/mocksTypes';
 
 type OffersListType = {
   offers: OfferType[];
@@ -8,7 +8,7 @@ type OffersListType = {
 
 }
 
-function OffersList({offers, setActiveOffer}: OffersListType): ReactNodeArray {
+function renderOffersList({offers, setActiveOffer}: OffersListType): ReactNodeArray {
   return (
     offers.map((item) => (
       Offer(
@@ -19,4 +19,4 @@ function OffersList({offers, setActiveOffer}: OffersListType): ReactNodeArray {
   );
 }
 
-export default OffersList;
+export default renderOffersList;
