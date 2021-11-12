@@ -21,7 +21,7 @@ const offers: OfferType[] = [
       name: 'Angelina',
     },
     id: nanoid(),
-    images: ['img/room.jpg', 'img/room.jpg'],
+    images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
     isFavorite: false,
     isPremium: false,
     location: {

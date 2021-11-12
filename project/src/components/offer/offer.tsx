@@ -2,15 +2,17 @@ import {OfferType} from '../../types/mocksTypes';
 import {TOTAL_STARS} from '../../const';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
+import {getPremiumMark} from '../../helpers/getPremiumMark';
+import {PageType} from '../../types/propsTypes';
 
 
 type OfferPropsType = {
   offer: OfferType;
   setActiveOffer?: (id?: string) => void;
-  isFavorites: boolean;
+  pageType: PageType;
 }
 
-function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): JSX.Element {
+function Offer({offer, setActiveOffer, pageType}: OfferPropsType): JSX.Element {
   function offerMouseEnterHandler() {
     if (setActiveOffer) {
       setActiveOffer(offer.id);
@@ -25,30 +27,24 @@ function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): JSX.Elemen
 
   const offerCardClassnames = classNames({
     'place-card': true,
-    'favorites__card': isFavorites,
-    'cities__place-card': !isFavorites,
+    'favorites__card': pageType === PageType.favorites,
+    'cities__place-card': pageType === PageType.cities,
+    'near-places__card': pageType === PageType.room,
   });
 
   const offerImageWrapperClassnames  = classNames({
     'place-card__image-wrapper': true,
-    'favorites__image-wrapper': isFavorites,
-    'cities__image-wrapper': !isFavorites,
+    'favorites__image-wrapper': pageType === PageType.favorites,
+    'cities__image-wrapper': pageType === PageType.cities,
+    'near-places__image-wrapper': pageType === PageType.room,
   });
-
-  function getPremiumMark(): false | JSX.Element {
-    return offer.isPremium && (
-      <div className="place-card__mark">
-        <span >Premium</span>
-      </div>
-    );
-  }
 
 
   return (
     <article onMouseEnter={offerMouseEnterHandler}
       onMouseLeave={offerMouseLeaveHandler} className={offerCardClassnames}
     >
-      {getPremiumMark()}
+      {getPremiumMark(offer)}
       <div className={offerImageWrapperClassnames}>
         <Link to="#">
           <img
