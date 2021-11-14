@@ -1,4 +1,3 @@
-import {TOTAL_STARS} from '../../const';
 import {ReviewType} from '../../types/mocksTypes';
 import {getRatingSpan} from '../../helpers/getSpanStyle';
 

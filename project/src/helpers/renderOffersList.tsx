@@ -1,20 +1,19 @@
 import {ReactNodeArray} from 'react';
 import Offer from '../components/offer/offer';
 import {OfferType} from '../types/mocksTypes';
-import {PageType} from '../types/propsTypes';
 
 type OffersListType = {
   offers: OfferType[];
   setActiveOffer?: (id?: string) => void;
-  pageType: PageType,
+  classPrefix?: string,
 }
 
-function renderOffersList({offers, setActiveOffer, pageType}: OffersListType): ReactNodeArray {
+function renderOffersList({offers, setActiveOffer, classPrefix}: OffersListType): ReactNodeArray {
   return offers.map((offer) => (
     <Offer
       offer={offer}
       setActiveOffer={setActiveOffer}
-      pageType={pageType}
+      classPrefix={classPrefix}
       key={offer.id}
     />
   ),

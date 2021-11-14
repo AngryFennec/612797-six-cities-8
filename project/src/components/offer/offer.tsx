@@ -1,19 +1,16 @@
 import {OfferType} from '../../types/mocksTypes';
-import {TOTAL_STARS} from '../../const';
 import {Link} from 'react-router-dom';
-import classNames from 'classnames';
 import {getPremiumMark} from '../../helpers/getPremiumMark';
-import {PageType} from '../../types/propsTypes';
 import {getRatingSpan} from '../../helpers/getSpanStyle';
 
 
 type OfferPropsType = {
   offer: OfferType;
   setActiveOffer?: (id?: string) => void;
-  pageType: PageType;
+  classPrefix?: string;
 }
 
-function Offer({offer, setActiveOffer, pageType}: OfferPropsType): JSX.Element {
+function Offer({offer, setActiveOffer, classPrefix}: OfferPropsType): JSX.Element {
   function offerMouseEnterHandler() {
     if (setActiveOffer) {
       setActiveOffer(offer.id);
@@ -26,30 +23,26 @@ function Offer({offer, setActiveOffer, pageType}: OfferPropsType): JSX.Element {
     }
   }
 
-  const cardClasses = classNames({
-    'place-card': true,
-    'favorites__card': pageType === PageType.favorites,
-    'cities__place-card': pageType === PageType.cities,
-    'near-places__card': pageType === PageType.room,
-  });
+  function getCardClasses(): string {
+    if (classPrefix === 'near-places') {
+      return `place-card ${classPrefix}__card`;
+    }
+    return `place-card ${classPrefix}__place-card`;
+  }
 
-  const wrapperClasses  = classNames({
-    'place-card__image-wrapper': true,
-    'favorites__image-wrapper': pageType === PageType.favorites,
-    'cities__image-wrapper': pageType === PageType.cities,
-    'near-places__image-wrapper': pageType === PageType.room,
-  });
-
+  function getImageWrapperClasses(): string {
+    return `place-card__image-wrapper ${classPrefix}__image-wrapper`;
+  }
 
   return (
     <article
       onMouseEnter={offerMouseEnterHandler}
       onMouseLeave={offerMouseLeaveHandler}
-      className={cardClasses}
+      className={getCardClasses()}
     >
       {getPremiumMark(offer.isPremium)}
-      <div className={wrapperClasses}>
-        <Link to="#">
+      <div className={getImageWrapperClasses()}>
+        <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"
             src={offer.previewImage}

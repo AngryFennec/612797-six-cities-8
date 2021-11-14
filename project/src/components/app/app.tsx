@@ -13,6 +13,8 @@ type AppPropsType = {
   reviews: ReviewType[]
 };
 
+const activeCity = 'Amsterdam';
+
 function App({offers, reviews}: AppPropsType): JSX.Element {
   return (
     <BrowserRouter>
@@ -24,7 +26,7 @@ function App({offers, reviews}: AppPropsType): JSX.Element {
           <SignIn />
         </Route>
         <Route exact path={AppRoute.Room}>
-          <Room offers={offers} reviews={reviews} />
+          <Room offers={offers} reviews={reviews} activeCity={activeCity} />
         </Route>
         <PrivateRoute
           exact

@@ -1,12 +1,11 @@
 import {AppRoute} from '../../../const';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import ReviewsForm from '../../reviews-form/reviews-form';
 import renderReviewsList from '../../../helpers/renderReviewsList';
 import Map from '../../map/map';
 import {OfferType, ReviewType} from '../../../types/mocksTypes';
 import {getPremiumMark} from '../../../helpers/getPremiumMark';
 import renderOffersList from '../../../helpers/renderOffersList';
-import {PageType} from '../../../types/propsTypes';
 import {getRatingSpan} from '../../../helpers/getSpanStyle';
 import {ReactNode} from 'react';
 
@@ -16,16 +15,25 @@ const HOST_AVATAR_SIZE = 74;
 
 type RoomPropsType = {
   offers: OfferType[],
-  reviews: ReviewType[]
+  reviews: ReviewType[],
+  activeCity : string
 };
 
 
 const getProStatus = (isProStatus: boolean): ReactNode =>
   isProStatus && <span className="property__user-status">Pro</span>;
 
-function Room({offers, reviews}: RoomPropsType): JSX.Element {
-  const nearbyOffers = offers.slice(0, NEARBY_OFFERS_QUANTITY);
-  const {id, images,isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description} = offers[0];
+function Room({offers, reviews, activeCity}: RoomPropsType): JSX.Element {
+
+  const nearbyOffers = offers.filter((offerItem) => offerItem.city.name === activeCity).slice(0, NEARBY_OFFERS_QUANTITY);
+  const {id}: any = useParams();
+  const offer: OfferType | undefined = offers.find((offerItem) => offerItem.id === id);
+
+  if (!offer) {
+    return <div className="page" />;
+  }
+
+  const {images,isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description} = offer;
 
   return (
     <div className="page">
@@ -62,7 +70,7 @@ function Room({offers, reviews}: RoomPropsType): JSX.Element {
           <div className="property__gallery-container container">
             <div className="property__gallery">
               {images.map((image) => (
-                <div className="property__image-wrapper" key={id}>
+                <div className="property__image-wrapper" key={image}>
                   <img className="property__image" src={image} alt="Studio"/>
                 </div>
               ),
@@ -109,7 +117,7 @@ function Room({offers, reviews}: RoomPropsType): JSX.Element {
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
                   {goods.map((good) => (
-                    <li className="property__inside-item" key={id}>
+                    <li className="property__inside-item" key={good}>
                       {good}
                     </li>
                   ))}
@@ -147,9 +155,8 @@ function Room({offers, reviews}: RoomPropsType): JSX.Element {
           </div>
           <section className="property__map map">
             <Map
-              city={offers[0].city}
+              city={nearbyOffers[0].city}
               offers={nearbyOffers}
-              pageType={PageType.room}
             />
           </section>
         </section>
@@ -157,7 +164,7 @@ function Room({offers, reviews}: RoomPropsType): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {renderOffersList({offers: nearbyOffers, pageType: PageType.room})}
+              {renderOffersList({offers: nearbyOffers, classPrefix: 'near-places'})}
             </div>
           </section>
         </div>
