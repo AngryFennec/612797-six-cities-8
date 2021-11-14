@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 import {getPremiumMark} from '../../helpers/getPremiumMark';
 import {PageType} from '../../types/propsTypes';
+import {getRatingSpan} from '../../helpers/getSpanStyle';
 
 
 type OfferPropsType = {
@@ -41,8 +42,10 @@ function Offer({offer, setActiveOffer, pageType}: OfferPropsType): JSX.Element {
 
 
   return (
-    <article onMouseEnter={offerMouseEnterHandler}
-      onMouseLeave={offerMouseLeaveHandler} className={cardClasses}
+    <article
+      onMouseEnter={offerMouseEnterHandler}
+      onMouseLeave={offerMouseLeaveHandler}
+      className={cardClasses}
     >
       {getPremiumMark(offer.isPremium)}
       <div className={wrapperClasses}>
@@ -71,7 +74,7 @@ function Offer({offer, setActiveOffer, pageType}: OfferPropsType): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${100 / TOTAL_STARS * offer.rating}%`}}/>
+            {getRatingSpan(offer.rating)}
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

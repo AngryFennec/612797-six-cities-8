@@ -1,4 +1,4 @@
-import {AppRoute, TOTAL_STARS} from '../../../const';
+import {AppRoute} from '../../../const';
 import {Link} from 'react-router-dom';
 import ReviewsForm from '../../reviews-form/reviews-form';
 import renderReviewsList from '../../../helpers/renderReviewsList';
@@ -7,24 +7,26 @@ import {OfferType, ReviewType} from '../../../types/mocksTypes';
 import {getPremiumMark} from '../../../helpers/getPremiumMark';
 import renderOffersList from '../../../helpers/renderOffersList';
 import {PageType} from '../../../types/propsTypes';
+import {getRatingSpan} from '../../../helpers/getSpanStyle';
+import {ReactNode} from 'react';
 
 const NEARBY_OFFERS_QUANTITY = 3;
 
 const HOST_AVATAR_SIZE = 74;
 
 type RoomPropsType = {
-  offer: OfferType,
   offers: OfferType[],
   reviews: ReviewType[]
 };
 
 
-function getProStatus(offer: OfferType): false | JSX.Element {
-  return offer.host.isProStatus &&
-    <span className="property__user-status">Pro</span>;
-}
+const getProStatus = (isProStatus: boolean): ReactNode =>
+  isProStatus && <span className="property__user-status">Pro</span>;
 
-function Room({offer, offers, reviews}: RoomPropsType): JSX.Element {
+function Room({offers, reviews}: RoomPropsType): JSX.Element {
+  const nearbyOffers = offers.slice(0, NEARBY_OFFERS_QUANTITY);
+  const {id, images,isPremium, title, rating, type, bedrooms, maxAdults, price, goods, host, description} = offers[0];
+
   return (
     <div className="page">
       <header className="header">
@@ -59,8 +61,8 @@ function Room({offer, offers, reviews}: RoomPropsType): JSX.Element {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {offer.images.map((image) => (
-                <div className="property__image-wrapper" key={offer.id}>
+              {images.map((image) => (
+                <div className="property__image-wrapper" key={id}>
                   <img className="property__image" src={image} alt="Studio"/>
                 </div>
               ),
@@ -69,10 +71,10 @@ function Room({offer, offers, reviews}: RoomPropsType): JSX.Element {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {getPremiumMark(offer.isPremium)}
+              {getPremiumMark(isPremium)}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  {offer.title}
+                  {title}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
@@ -83,31 +85,31 @@ function Room({offer, offers, reviews}: RoomPropsType): JSX.Element {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${100 / TOTAL_STARS * offer.rating}%`}}/>
+                  {getRatingSpan(rating)}
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{offer.rating}</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {offer.type}
+                  {type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {offer.bedrooms} Bedrooms
+                  {bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {offer.maxAdults} adults
+                  Max {maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;{offer.price}</b>
+                <b className="property__price-value">&euro;{price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {offer.goods.map((good) => (
-                    <li className="property__inside-item" key={offer.id}>
+                  {goods.map((good) => (
+                    <li className="property__inside-item" key={id}>
                       {good}
                     </li>
                   ))}
@@ -119,20 +121,20 @@ function Room({offer, offers, reviews}: RoomPropsType): JSX.Element {
                   <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
                     <img
                       className="property__avatar user__avatar"
-                      src={offer.host.avatarUrl}
+                      src={host.avatarUrl}
                       width={HOST_AVATAR_SIZE}
                       height={HOST_AVATAR_SIZE}
                       alt="Host avatar"
                     />
                   </div>
                   <span className="property__user-name">
-                    {offer.host.name}
+                    {host.name}
                   </span>
-                  {getProStatus(offer)}
+                  {getProStatus(host.isProStatus)}
                 </div>
                 <div className="property__description">
                   <p className="property__text">
-                    {offer.description}
+                    {description}
                   </p>
                 </div>
               </div>
@@ -146,7 +148,7 @@ function Room({offer, offers, reviews}: RoomPropsType): JSX.Element {
           <section className="property__map map">
             <Map
               city={offers[0].city}
-              offers={offers.slice(0, NEARBY_OFFERS_QUANTITY)}
+              offers={nearbyOffers}
               pageType={PageType.room}
             />
           </section>
@@ -155,7 +157,7 @@ function Room({offer, offers, reviews}: RoomPropsType): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {renderOffersList({offers: offers.slice(0, NEARBY_OFFERS_QUANTITY), pageType: PageType.room})}
+              {renderOffersList({offers: nearbyOffers, pageType: PageType.room})}
             </div>
           </section>
         </div>
