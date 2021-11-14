@@ -10,6 +10,8 @@ import {PageType} from '../../../types/propsTypes';
 
 const NEARBY_OFFERS_QUANTITY = 3;
 
+const HOST_AVATAR_SIZE = 74;
+
 type RoomPropsType = {
   offer: OfferType,
   offers: OfferType[],
@@ -57,18 +59,17 @@ function Room({offer, offers, reviews}: RoomPropsType): JSX.Element {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {offer.images.map((image, index) =>
-                (
-                  <div className="property__image-wrapper" key={`image-${image}-${offer.id}`}>
-                    <img className="property__image" src={image} alt="Studio"/>
-                  </div>
-                ),
+              {offer.images.map((image) => (
+                <div className="property__image-wrapper" key={offer.id}>
+                  <img className="property__image" src={image} alt="Studio"/>
+                </div>
+              ),
               )}
             </div>
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              {getPremiumMark(offer)}
+              {getPremiumMark(offer.isPremium)}
               <div className="property__name-wrapper">
                 <h1 className="property__name">
                   {offer.title}
@@ -106,7 +107,7 @@ function Room({offer, offers, reviews}: RoomPropsType): JSX.Element {
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
                   {offer.goods.map((good) => (
-                    <li className="property__inside-item" key={`good-${good}-${offer.id}`}>
+                    <li className="property__inside-item" key={offer.id}>
                       {good}
                     </li>
                   ))}
@@ -116,7 +117,11 @@ function Room({offer, offers, reviews}: RoomPropsType): JSX.Element {
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74"
+                    <img
+                      className="property__avatar user__avatar"
+                      src={offer.host.avatarUrl}
+                      width={HOST_AVATAR_SIZE}
+                      height={HOST_AVATAR_SIZE}
                       alt="Host avatar"
                     />
                   </div>

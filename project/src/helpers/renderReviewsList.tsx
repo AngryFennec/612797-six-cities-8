@@ -7,10 +7,10 @@ type ReviewsListType = {
 };
 
 function renderReviewsList({reviews}: ReviewsListType): ReactNodeArray {
-  return reviews.map((item, i) => (
+  return reviews.map((review) => (
     <ReviewItem
-      review={item}
-      key={`review-${item.id}`}
+      review={review}
+      key={review.id}
     />
   ),
   );

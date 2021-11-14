@@ -10,12 +10,12 @@ type OffersListType = {
 }
 
 function renderOffersList({offers, setActiveOffer, pageType}: OffersListType): ReactNodeArray {
-  return offers.map((item, i) => (
+  return offers.map((offer) => (
     <Offer
-      offer={item}
+      offer={offer}
       setActiveOffer={setActiveOffer}
       pageType={pageType}
-      key={`offer-${item.id}`}
+      key={offer.id}
     />
   ),
   );

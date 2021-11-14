@@ -25,14 +25,14 @@ function Offer({offer, setActiveOffer, pageType}: OfferPropsType): JSX.Element {
     }
   }
 
-  const offerCardClassnames = classNames({
+  const cardClasses = classNames({
     'place-card': true,
     'favorites__card': pageType === PageType.favorites,
     'cities__place-card': pageType === PageType.cities,
     'near-places__card': pageType === PageType.room,
   });
 
-  const offerImageWrapperClassnames  = classNames({
+  const wrapperClasses  = classNames({
     'place-card__image-wrapper': true,
     'favorites__image-wrapper': pageType === PageType.favorites,
     'cities__image-wrapper': pageType === PageType.cities,
@@ -42,10 +42,10 @@ function Offer({offer, setActiveOffer, pageType}: OfferPropsType): JSX.Element {
 
   return (
     <article onMouseEnter={offerMouseEnterHandler}
-      onMouseLeave={offerMouseLeaveHandler} className={offerCardClassnames}
+      onMouseLeave={offerMouseLeaveHandler} className={cardClasses}
     >
-      {getPremiumMark(offer)}
-      <div className={offerImageWrapperClassnames}>
+      {getPremiumMark(offer.isPremium)}
+      <div className={wrapperClasses}>
         <Link to="#">
           <img
             className="place-card__image"

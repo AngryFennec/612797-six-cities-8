@@ -1,9 +1,12 @@
 import {TOTAL_STARS} from '../../const';
 import {ReviewType} from '../../types/mocksTypes';
 
+const AVATAR_SIZE = 54;
+
 type ReviewPropsType = {
   review: ReviewType;
 }
+
 function ReviewItem({review}: ReviewPropsType): JSX.Element {
   const date = new Date(review.date);
 
@@ -11,7 +14,11 @@ function ReviewItem({review}: ReviewPropsType): JSX.Element {
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54"
+          <img
+            className="reviews__avatar user__avatar"
+            src={review.user.avatarUrl}
+            width={AVATAR_SIZE}
+            height={AVATAR_SIZE}
             alt="Reviews avatar"
           />
         </div>

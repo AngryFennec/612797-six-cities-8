@@ -13,9 +13,8 @@ type MapType = {
   pageType?: PageType,
 };
 
-function getMapHeight(pageType: PageType | undefined): string {
-  return pageType === PageType.room ? '579px' : '100%';
-}
+const getMapHeight = (pageType?: PageType): string =>
+  pageType === PageType.room ? '579px' : '100%';
 
 function Map({city, offers, activeId, pageType}: MapType): JSX.Element {
   const mapRef = useRef(null);

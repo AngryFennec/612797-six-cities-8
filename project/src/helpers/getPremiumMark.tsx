@@ -1,9 +1,9 @@
-import {OfferType} from '../types/mocksTypes';
+import {ReactNode} from 'react';
 
-export function getPremiumMark(offer: OfferType): false | JSX.Element {
-  return offer.isPremium && (
+export function getPremiumMark(isPremium: boolean): ReactNode {
+  return isPremium && (
     <div className="place-card__mark">
-      <span >Premium</span>
+      <span>Premium</span>
     </div>
   );
 }
