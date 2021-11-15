@@ -2,7 +2,7 @@ import renderOffersList from '../../../helpers/renderOffersList';
 import Map from '../../map/map';
 import {DefaultPropsType} from '../../../types/propsTypes';
 import {useState} from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 function Main({offers}: DefaultPropsType): JSX.Element {
   const [activeId, setActiveId] = useState<string>();
@@ -95,7 +95,7 @@ function Main({offers}: DefaultPropsType): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {renderOffersList({offers: offers, setActiveOffer: setActiveId})}
+                {renderOffersList({offers: offers, setActiveOffer: setActiveId, classPrefix: 'cities'})}
               </div>
             </section>
             <div className="cities__right-section">

@@ -21,7 +21,7 @@ const offers: OfferType[] = [
       name: 'Angelina',
     },
     id: nanoid(),
-    images: ['img/room.jpg', 'img/room.jpg'],
+    images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
     isFavorite: false,
     isPremium: false,
     location: {
@@ -55,7 +55,7 @@ const offers: OfferType[] = [
       name: 'Agnessa',
     },
     id: nanoid(),
-    images: ['img/room.jpg', 'img/room.jpg', 'img/room.jpg'],
+    images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
     isFavorite: true,
     isPremium: true,
     location: {
@@ -89,7 +89,7 @@ const offers: OfferType[] = [
       name: 'Angelina',
     },
     id: nanoid(),
-    images: ['img/room.jpg', 'img/room.jpg', 'img/room.jpg'],
+    images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
     isFavorite: true,
     isPremium: false,
     location: {
@@ -123,7 +123,7 @@ const offers: OfferType[] = [
       name: 'Alla',
     },
     id: nanoid(),
-    images: ['img/room.jpg', 'img/room.jpg', 'img/room.jpg', 'img/room.jpg'],
+    images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
     isFavorite: true,
     isPremium: false,
     location: {

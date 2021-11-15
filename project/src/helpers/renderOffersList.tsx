@@ -5,16 +5,16 @@ import {OfferType} from '../types/mocksTypes';
 type OffersListType = {
   offers: OfferType[];
   setActiveOffer?: (id?: string) => void;
-
+  classPrefix?: string,
 }
 
-function renderOffersList({offers, setActiveOffer}: OffersListType): ReactNodeArray {
-  return offers.map((item, i) => (
+function renderOffersList({offers, setActiveOffer, classPrefix}: OffersListType): ReactNodeArray {
+  return offers.map((offer) => (
     <Offer
-      offer={item}
+      offer={offer}
       setActiveOffer={setActiveOffer}
-      isFavorites={false}
-      key={`offer-${item.id}`}
+      classPrefix={classPrefix}
+      key={offer.id}
     />
   ),
   );

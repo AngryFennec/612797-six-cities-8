@@ -8,7 +8,7 @@ const reviews: ReviewType[] = [
     id: nanoid(),
     rating: 5,
     user: {
-      avatarUrl: 'img/1.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: nanoid(),
       isProStatus: false,
       name: 'Ajax',
@@ -20,7 +20,7 @@ const reviews: ReviewType[] = [
     id: nanoid(),
     rating: 2,
     user: {
-      avatarUrl: 'img/2.png',
+      avatarUrl: 'img/avatar-max.jpg',
       id: nanoid(),
       isProStatus: false,
       name: 'Max',
@@ -32,7 +32,7 @@ const reviews: ReviewType[] = [
     id: nanoid(),
     rating: 4,
     user: {
-      avatarUrl: 'img/3.png',
+      avatarUrl: 'img/avatar-angelina.jpg',
       id: nanoid(),
       isProStatus: false,
       name: 'Brad',
@@ -44,7 +44,7 @@ const reviews: ReviewType[] = [
     id: nanoid(),
     rating: 3,
     user: {
-      avatarUrl: 'img/4.png',
+      avatarUrl: 'img/avatar-max.jpg',
       id: nanoid(),
       isProStatus: true,
       name: 'Pitt',

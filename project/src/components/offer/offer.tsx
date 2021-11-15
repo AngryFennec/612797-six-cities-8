@@ -1,16 +1,16 @@
 import {OfferType} from '../../types/mocksTypes';
-import {TOTAL_STARS} from '../../const';
 import {Link} from 'react-router-dom';
-import classNames from 'classnames';
+import {getPremiumMark} from '../../helpers/getPremiumMark';
+import {getRatingSpan} from '../../helpers/getSpanStyle';
 
 
 type OfferPropsType = {
   offer: OfferType;
   setActiveOffer?: (id?: string) => void;
-  isFavorites: boolean;
+  classPrefix?: string;
 }
 
-function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): JSX.Element {
+function Offer({offer, setActiveOffer, classPrefix}: OfferPropsType): JSX.Element {
   function offerMouseEnterHandler() {
     if (setActiveOffer) {
       setActiveOffer(offer.id);
@@ -23,34 +23,25 @@ function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): JSX.Elemen
     }
   }
 
-  const offerCardClassnames = classNames({
-    'place-card': true,
-    'favorites__card': isFavorites,
-    'cities__place-card': !isFavorites,
-  });
-
-  const offerImageWrapperClassnames  = classNames({
-    'place-card__image-wrapper': true,
-    'favorites__image-wrapper': isFavorites,
-    'cities__image-wrapper': !isFavorites,
-  });
-
-  function getPremiumMark(): false | JSX.Element {
-    return offer.isPremium && (
-      <div className="place-card__mark">
-        <span >Premium</span>
-      </div>
-    );
+  function getCardClasses(): string {
+    return classPrefix === 'near-places'
+      ? `place-card ${classPrefix}__card`
+      : `place-card ${classPrefix}__place-card`;
   }
 
+  function getImageWrapperClasses(): string {
+    return `place-card__image-wrapper ${classPrefix}__image-wrapper`;
+  }
 
   return (
-    <article onMouseEnter={offerMouseEnterHandler}
-      onMouseLeave={offerMouseLeaveHandler} className={offerCardClassnames}
+    <article
+      onMouseEnter={offerMouseEnterHandler}
+      onMouseLeave={offerMouseLeaveHandler}
+      className={getCardClasses()}
     >
-      {getPremiumMark()}
-      <div className={offerImageWrapperClassnames}>
-        <Link to="#">
+      {getPremiumMark(offer.isPremium)}
+      <div className={getImageWrapperClasses()}>
+        <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"
             src={offer.previewImage}
@@ -75,7 +66,7 @@ function Offer({offer, setActiveOffer, isFavorites}: OfferPropsType): JSX.Elemen
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${100 / TOTAL_STARS * offer.rating}%`}}/>
+            {getRatingSpan(offer.rating)}
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

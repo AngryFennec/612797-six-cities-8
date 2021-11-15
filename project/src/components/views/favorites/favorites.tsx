@@ -48,7 +48,7 @@ function Favorites({offers}: DefaultPropsType): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {renderOffersList({offers: offers})}
+                  {renderOffersList({offers: offers, classPrefix: 'favorites'})}
                 </div>
               </li>
             </ul>
