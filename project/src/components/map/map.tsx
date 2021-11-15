@@ -5,6 +5,7 @@ import useMap from '../../hooks/useMap';
 import {ICON_ANCHOR_HEIGHT, ICON_ANCHOR_WIDTH, ICON_SIZE, URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const';
 import {CityType, OfferType} from '../../types/mocksTypes';
 import {useParams} from 'react-router-dom';
+import {UseParamsHookInterface} from '../../types/propsTypes';
 
 type MapType = {
   city: CityType,
@@ -18,7 +19,7 @@ const getMapHeight = (id?: string): string =>
 function Map({city, offers, activeId}: MapType): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
-  const {id}: any = useParams();
+  const {id} = useParams<UseParamsHookInterface>();
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,

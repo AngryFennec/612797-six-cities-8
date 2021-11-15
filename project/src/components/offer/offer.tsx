@@ -24,10 +24,9 @@ function Offer({offer, setActiveOffer, classPrefix}: OfferPropsType): JSX.Elemen
   }
 
   function getCardClasses(): string {
-    if (classPrefix === 'near-places') {
-      return `place-card ${classPrefix}__card`;
-    }
-    return `place-card ${classPrefix}__place-card`;
+    return classPrefix === 'near-places'
+      ? `place-card ${classPrefix}__card`
+      : `place-card ${classPrefix}__place-card`;
   }
 
   function getImageWrapperClasses(): string {

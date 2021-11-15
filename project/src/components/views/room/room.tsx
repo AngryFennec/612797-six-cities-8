@@ -8,6 +8,7 @@ import {getPremiumMark} from '../../../helpers/getPremiumMark';
 import renderOffersList from '../../../helpers/renderOffersList';
 import {getRatingSpan} from '../../../helpers/getSpanStyle';
 import {ReactNode} from 'react';
+import {UseParamsHookInterface} from '../../../types/propsTypes';
 
 const NEARBY_OFFERS_QUANTITY = 3;
 
@@ -26,7 +27,7 @@ const getProStatus = (isProStatus: boolean): ReactNode =>
 function Room({offers, reviews, activeCity}: RoomPropsType): JSX.Element {
 
   const nearbyOffers = offers.filter((offerItem) => offerItem.city.name === activeCity).slice(0, NEARBY_OFFERS_QUANTITY);
-  const {id}: any = useParams();
+  const {id} = useParams<UseParamsHookInterface>();
   const offer: OfferType | undefined = offers.find((offerItem) => offerItem.id === id);
 
   if (!offer) {

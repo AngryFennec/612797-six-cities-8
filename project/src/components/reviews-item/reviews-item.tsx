@@ -9,7 +9,7 @@ type ReviewPropsType = {
 
 function ReviewItem({review}: ReviewPropsType): JSX.Element {
   const date = new Date(review.date);
-  const dateValue = `${date.getFullYear()} - ${date.getMonth() + 1}-${date.getDate()}`;
+  const dateValue = `${date.getFullYear()} - ${date.getMonth() + 1} - ${date.getDate()}`;
   const dateString = `${date.toLocaleString('en', { month: 'long' })} ${date.getFullYear()}`;
 
   return (
